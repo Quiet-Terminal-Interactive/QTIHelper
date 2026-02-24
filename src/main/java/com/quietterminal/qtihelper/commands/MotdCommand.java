@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
 import com.google.gson.JsonObject;
 
 public class MotdCommand {
@@ -52,7 +54,7 @@ public class MotdCommand {
             .build();
         
         try {
-            client.send(request, null);
+            client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
