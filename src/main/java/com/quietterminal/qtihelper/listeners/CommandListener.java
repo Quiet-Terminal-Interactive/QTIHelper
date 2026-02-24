@@ -45,6 +45,8 @@ public class CommandListener extends ListenerAdapter {
             case "clonecat":
                 new CloneCatCommand().execute(event, args);
                 break;
+            case "motd":
+                new MotdCommand().execute(event, args);
             default:
                 new DefaultCommand().execute(event);
                 break;
