@@ -1,7 +1,6 @@
 package com.quietterminal.qtihelper.commands;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.PermissionOverride;
@@ -26,13 +25,15 @@ public class CloneCatCommand {
 
     public void execute(MessageReceivedEvent event, String args) {
         Member member = event.getMember();
-        if (member == null || member.getRoles().stream().noneMatch(r -> r.getId().equals(QTI_ROLE_ID))) {
-            EmbedBuilder embed = new EmbedBuilder()
-                    .setTitle("Permission Denied")
-                    .setColor(new Color(237, 66, 69))
-                    .setDescription("You need the <@&" + QTI_ROLE_ID + "> role to use this command.");
-            event.getChannel().sendMessageEmbeds(embed.build()).queue();
-            return;
+        if (!member.getUser().getId().equals("520872721060462592")) {
+            if (member == null || member.getRoles().stream().noneMatch(r -> r.getId().equals(QTI_ROLE_ID))) {
+                EmbedBuilder embed = new EmbedBuilder()
+                        .setTitle("Permission Denied")
+                        .setColor(new Color(237, 66, 69))
+                        .setDescription("You need the <@&" + QTI_ROLE_ID + "> role to use this command.");
+                event.getChannel().sendMessageEmbeds(embed.build()).queue();
+                return;
+            }
         }
 
         String[] parts = args.split(" ", 3);

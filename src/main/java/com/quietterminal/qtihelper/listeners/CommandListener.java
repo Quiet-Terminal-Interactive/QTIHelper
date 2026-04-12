@@ -47,6 +47,7 @@ public class CommandListener extends ListenerAdapter {
                 break;
             case "motd":
                 new MotdCommand().execute(event, args);
+                break;
             default:
                 new DefaultCommand().execute(event);
                 break;
